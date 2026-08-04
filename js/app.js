@@ -619,4 +619,65 @@ document.addEventListener('DOMContentLoaded', () => {
       overlays.forEach(overlay => overlay.classList.remove('open'));
     }
   });
+
+  // 11. Service Worker & PWA Auto-Update Detection
+  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+
+  if ('serviceWorker' in navigator) {
+    if (isLocalhost) {
+      // Unregister Service Worker in local dev environment to avoid HMR / caching conflicts
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    } else {
+      // Register Service Worker in production environment
+      navigator.serviceWorker.register('./sw.js').then(registration => {
+        registration.onupdatefound = () => {
+          const installingWorker = registration.installing;
+          if (installingWorker == null) return;
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                showSwUpdateToast(registration);
+              }
+            }
+          };
+        };
+      }).catch(err => {
+        console.log('ServiceWorker registration error:', err);
+      });
+
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+  }
+
+  function showSwUpdateToast(registration) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = 'toast update-toast';
+    toast.style.background = '#2b2d42';
+    toast.style.border = '1px solid #4a4d68';
+
+    toast.innerHTML = `
+      <span>🚀 發現網站發布了新版本！</span>
+      <button id="reloadSwBtn" style="background: #cb997e; color: #fff; border: none; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: 0.8rem; margin-left: 8px; cursor: pointer;">
+        點擊重新載入最新版
+      </button>
+    `;
+    container.appendChild(toast);
+
+    document.getElementById('reloadSwBtn').addEventListener('click', () => {
+      if (registration.waiting) {
+        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+      }
+    });
+  }
 });
