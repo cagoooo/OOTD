@@ -1,10 +1,13 @@
-# OOTD · 智慧日系約會穿搭指南與提案系統 🇯🇵 (P1 全功能版)
+# OOTD · 智慧日系約會穿搭指南與提案系統 🇯🇵
 
 > 參考 YouTube 穿搭企劃《夏天約會穿搭指南☀️ 這些細節女生很在意❓不費力穿出「日系感」的技巧大公開 🇯🇵 ft. 老辣妹》以及日本流行穿搭網站（.dot st / StyleHint / WEAR）精華，打造包含單品自由混搭、卡片 PNG 匯出、Gemini AI 穿搭顧問與氣溫感測的全功能 Web 應用。
 
+🌐 **線上展示網址 (GitHub Pages)**：[https://cagoooo.github.io/OOTD/](https://cagoooo.github.io/OOTD/)  
+📦 **GitHub 開源專案庫**：[https://github.com/cagoooo/OOTD](https://github.com/cagoooo/OOTD)
+
 ---
 
-## 🌟 核心功能與 P1 升級亮點
+## 🌟 核心功能與升級亮點
 
 1. **雙維度情境地圖 (Stage & Scenario Matrix)**：
    - **感情階段**：🌱 曖昧期 (1st Date) / 🌹 熱戀期與紀念日 (Anniversary)
@@ -35,19 +38,15 @@ g:/Agent/OOTD/
 │   ├── data.js             # 穿搭資料庫 (場景、單品、混搭選單、材質與評分規則)
 │   └── app.js              # 前端邏輯 (混搭計算、Canvas 匯出、Gemini AI、氣溫感測)
 ├── images/                 # AI 生成之日系男女約會情境精美形象照 (5張)
+├── .github/workflows/
+│   └── deploy.yml          # GitHub Actions 自動部署工作流
 ├── rdq/
 │   └── RDQ-spec-ootd-next-20260804.md  # RDQ 需求規格卡 (confirmed)
-├── README.md               # 專案說明文件
+├── README.md               # 專案說明文件 (全繁體中文)
 ```
 
 ---
 
-## 🚀 快速啟動指南
+## 🚀 部署與版控
 
-```bash
-# 於專案目錄下啟動伺服器
-python -m http.server 8080
-
-# 開啟瀏覽器造訪
-http://localhost:8080
-```
+本專案使用 GitHub Actions CI/CD 流水線，每次更新自動部署至 `gh-pages` 分支並線上發布。
