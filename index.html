@@ -3,8 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OOTD · 智慧日系約會穿搭指南與提案系統 🇯🇵</title>
-  <meta name="description" content="參考日系流行品牌與專業約會穿搭技巧，提供多場合、多感情階段、單品自由混搭、氣溫連動與 Gemini AI 顧問的 OOTD 穿搭提案網頁應用。">
+  <title>OOTD · 智慧日系約會穿搭指南 🇯🇵</title>
+  <meta name="description" content="參考日系流行品牌與專業約會穿搭技巧，提供看展覽、逛街、公園、餐廳、酒吧等多場合與身型材質優化的 OOTD 穿搭指南網頁應用。">
+  <meta name="theme-color" content="#1c1c1e">
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=45a3c9573274">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=45a3c9573274">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=45a3c9573274">
+  <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://cagoooo.github.io/OOTD/">
+
+  <!-- Open Graph / LINE / Facebook / iMessage Social Card -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cagoooo.github.io/OOTD/">
+  <meta property="og:title" content="OOTD · 智慧日系約會穿搭指南 🇯🇵">
+  <meta property="og:description" content="參考日系流行品牌與專業約會穿搭技巧，提供看展覽、逛街、公園、餐廳、酒吧等多場合與身型材質優化的 OOTD 穿搭指南網頁應用。">
+  <meta property="og:image" content="https://cagoooo.github.io/OOTD/og-preview.png?v=45a3c9573274">
+  <meta property="og:image:secure_url" content="https://cagoooo.github.io/OOTD/og-preview.png?v=45a3c9573274">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OOTD · 智慧日系約會穿搭指南 🇯🇵">
+  <meta name="twitter:description" content="參考日系流行品牌與專業約會穿搭技巧，提供看展覽、逛街、公園、餐廳、酒吧等多場合與身型材質優化的 OOTD 穿搭指南網頁應用。">
+  <meta name="twitter:image" content="https://cagoooo.github.io/OOTD/og-preview.png?v=45a3c9573274">
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,13 +46,13 @@
       </div>
       <div class="header-tools">
         <button class="tool-btn quiz-btn-style" id="openQuizBtn" title="開啟身型與膚色精準對照問卷">
-          <span class="btn-icon">📋</span> 身型膚色檢測
+          <span class="btn-icon">📋</span> <span class="btn-text">身型膚色檢測</span>
         </button>
         <button class="tool-btn ai-btn-style" id="openAiStylistBtn" title="開啟 Gemini 2.5 AI 穿搭對話顧問">
-          <span class="btn-icon">🤖</span> Gemini 穿搭顧問 <span class="ai-sparkle">✨</span>
+          <span class="btn-icon">🤖</span> <span class="btn-text">Gemini 穿搭顧問</span> <span class="ai-sparkle">✨</span>
         </button>
         <button class="tool-btn share-btn-style" id="openShareBtn" title="產生社群約會詢問文案與連結">
-          <span class="btn-icon">📲</span> 社群約會分享
+          <span class="btn-icon">📲</span> <span class="btn-text">社群約會分享</span>
         </button>
       </div>
     </div>
@@ -316,7 +344,7 @@
         <div class="share-title" id="shareCardTitle">約會情境：看展覽 / 美術館 🎨</div>
         <div class="share-vibe" id="shareCardVibe">氣質優雅 · 簡約知性</div>
         <div class="share-text-box" id="shareTextPreview">
-          這週末我們要去看展覽，我幫我們挑了這套日系約會穿搭（氣質優雅 · 簡約知性），你看好不好看？✨ 詳情連結：http://localhost:8080
+          這週末我們要去看展覽，我幫我們挑了這套日系約會穿搭（氣質優雅 · 簡約知性），你看好不好看？✨ 詳情連結：https://cagoooo.github.io/OOTD/
         </div>
       </div>
 
@@ -333,7 +361,7 @@
   <!-- Footer -->
   <footer class="footer">
     <p>© 2026 OOTD 日系約會穿搭指南 | 改良優化自 YouTube 穿搭經典企劃</p>
-    <p style="margin-top: 6px; font-size: 0.8rem; color: #8e8e93;">P1 升級版 · Fitting Studio / Canvas PNG / Gemini AI Agent / UIUX 全面修復</p>
+    <p style="margin-top: 6px; font-size: 0.8rem; color: #8e8e93;">PWA & Service Worker 支持 · 支援自動連線快取與更新通知</p>
   </footer>
 
   <!-- Scripts -->
