@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OOTD · 智慧日系約會穿搭指南與提案系統 🇯🇵</title>
+  <meta name="description" content="參考日系流行品牌與專業約會穿搭技巧，提供多場合、多感情階段、單品自由混搭、氣溫連動與 Gemini AI 顧問的 OOTD 穿搭提案網頁應用。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo-group">
+        <span class="logo-badge">OOTD 🇯🇵</span>
+        <h1 class="logo-title">日系約會穿搭指南</h1>
+      </div>
+      <div class="header-tools">
+        <button class="tool-btn quiz-btn-style" id="openQuizBtn" title="開啟身型與膚色精準對照問卷">
+          <span class="btn-icon">📋</span> 身型膚色檢測
+        </button>
+        <button class="tool-btn ai-btn-style" id="openAiStylistBtn" title="開啟 Gemini 2.5 AI 穿搭對話顧問">
+          <span class="btn-icon">🤖</span> Gemini 穿搭顧問 <span class="ai-sparkle">✨</span>
+        </button>
+        <button class="tool-btn share-btn-style" id="openShareBtn" title="產生社群約會詢問文案與連結">
+          <span class="btn-icon">📲</span> 社群約會分享
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <span class="hero-tag">✨ 夏日質感升級 · 不費力穿出日系感</span>
+    <h2 class="hero-title">告別約會穿搭焦慮<br>打造讓人心動的默契情侶 Look</h2>
+    <p class="hero-description">
+      結合日本流行穿搭網站（.dot st / StyleHint / WEAR）精華，提供感情階段切換、氣溫動態感測、單品混搭試穿與 Gemini AI 智慧諮詢。
+    </p>
+
+    <!-- Weather & Temperature Sync Bar -->
+    <div class="weather-bar-container">
+      <div class="weather-info">
+        <span class="weather-icon" id="weatherIcon">☀️</span>
+        <span class="weather-label">今日約會環境氣溫感測：</span>
+        <span class="weather-temp" id="tempDisplay">30°C (酷暑高溫)</span>
+      </div>
+      <input type="range" id="tempSlider" min="15" max="38" value="30" class="temp-slider">
+      <div class="temp-advice" id="tempAdvice">
+        🔥 高溫提醒：建議選擇【接觸涼感】與【亞麻透氣】單品，下半身抗皺防汗。
+      </div>
+    </div>
+
+    <!-- Stage Selector Tabs -->
+    <div class="stage-selector">
+      <button class="stage-btn active" data-stage="first_date">
+        <span>🌱</span> 曖昧期 / 首次約會 1st Date
+      </button>
+      <button class="stage-btn" data-stage="anniversary">
+        <span>🌹</span> 熱戀期 / 紀念日 Anniversary
+      </button>
+    </div>
+  </section>
+
+  <!-- Scenario Grid Cards -->
+  <section class="scenarios-grid" id="scenariosGrid">
+    <!-- Dynamically Populated by app.js -->
+  </section>
+
+  <!-- Main Outfit Showcase -->
+  <section class="outfit-showcase">
+    <div class="showcase-container" id="showcaseContainer">
+      
+      <!-- Left: Interactive Image with Hotspots -->
+      <div class="image-wrapper">
+        <img id="outfitImg" class="outfit-img" src="images/exhibition.jpg" alt="約會穿搭展示">
+        <div id="hotspotContainer">
+          <!-- Dynamic Hotspots -->
+        </div>
+      </div>
+
+      <!-- Right: Detailed Outfit Breakdown -->
+      <div class="outfit-info">
+        <div class="info-header">
+          <span class="info-stage-badge" id="infoStageBadge">曖昧期 1st Date Look</span>
+          <h3 class="info-title" id="infoTitle">看展覽 / 美術館 🎨</h3>
+          <p class="info-desc" id="infoDesc">沉穩氣質的黑白搭配，落肩亞麻與抗皺長裙的無壓質感。</p>
+        </div>
+
+        <!-- Gender Switch Tabs -->
+        <div class="gender-toggle">
+          <button class="gender-btn active" data-gender="male">👨 男生 Look (男生穿搭)</button>
+          <button class="gender-btn" data-gender="female">👩 女生 Look (老辣妹穿搭)</button>
+        </div>
+
+        <!-- Items & Styling Rules -->
+        <div class="outfit-details-box">
+          <div class="detail-section-title">📦 單品組合清單 (點擊查看詳情)</div>
+          <ul class="item-list" id="itemList">
+            <!-- Dynamic Items -->
+          </ul>
+
+          <div class="detail-section-title" style="margin-top: 1.5rem;">💡 約會避坑與細節法則</div>
+          <div class="rules-container" id="rulesContainer">
+            <!-- Dynamic Rules -->
+          </div>
+        </div>
+
+        <!-- Export Magazine Card Button -->
+        <button class="action-btn" id="exportCardBtn">
+          📸 產生並下載日系雜誌風 PNG 約會穿搭卡片
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- P1-1: Mix & Match Interactive Canvas Section (自由混搭工作台) -->
+  <section class="fitting-section">
+    <div class="section-heading">
+      <h3 class="section-title">🎨 Fitting Studio 自由混搭試穿工作台</h3>
+      <p class="section-desc">自由挑選單品組合，實時計算「上挺下飄 / A字黃金比例得分」與老辣妹評價！</p>
+    </div>
+
+    <div class="fitting-container">
+      <div class="fitting-controls">
+        <div class="gender-toggle" style="margin-bottom: 1.5rem;">
+          <button class="gender-btn active" id="fitGenderMale">👨 男生混搭</button>
+          <button class="gender-btn" id="fitGenderFemale">👩 女生混搭</button>
+        </div>
+
+        <div class="select-group">
+          <label class="select-label">👕 選擇上衣單品：</label>
+          <select id="selectTop" class="fit-select"></select>
+        </div>
+
+        <div class="select-group">
+          <label class="select-label">👖 選擇下裝單品：</label>
+          <select id="selectBottom" class="fit-select"></select>
+        </div>
+
+        <div class="select-group">
+          <label class="select-label">👞 選擇鞋款單品：</label>
+          <select id="selectShoe" class="fit-select"></select>
+        </div>
+
+        <div class="select-group">
+          <label class="select-label">🎒 選擇配件心機：</label>
+          <select id="selectAcc" class="fit-select"></select>
+        </div>
+      </div>
+
+      <div class="fitting-result-card">
+        <div class="result-badge">黃金比例動態評分</div>
+        <div class="score-display">
+          <span class="score-number" id="fitScore">95</span>
+          <span class="score-unit">/ 100 分</span>
+        </div>
+        <div class="score-bar"><div class="score-fill" id="scoreFill" style="width: 95%;"></div></div>
+
+        <div class="evaluation-box" id="evalBox">
+          🎯 【上挺下飄黃金比例】：結構感上衣 + 垂墜飄逸下裝，完美的日系視覺層次感，得滿分！
+        </div>
+
+        <div class="fit-items-summary" id="fitSummary">
+          <!-- Summary items -->
+        </div>
+
+        <button class="action-btn secondary" id="exportMixCardBtn">
+          📥 匯出此混搭組合長圖
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body & Fabric Fit Radar Section -->
+  <section class="radar-section">
+    <div class="section-heading">
+      <h3 class="section-title">🎯 身型雷達與材質體驗對照</h3>
+      <p class="section-desc">點擊下方標籤，快速檢索符合您需求的情境提案！</p>
+    </div>
+
+    <div class="radar-grid">
+      <!-- Body Fit Card -->
+      <div class="filter-card">
+        <div class="filter-card-title">
+          <span>👔</span> 身型比例修飾需求
+        </div>
+        <div class="tag-cloud">
+          <button class="filter-tag" data-filter="窄肩修飾">窄肩修飾 (延伸肩線)</button>
+          <button class="filter-tag" data-filter="遮小腹">遮小腹 (隱形修飾)</button>
+          <button class="filter-tag" data-filter="腿型拉長">腿型拉長 (高腰切換)</button>
+          <button class="filter-tag" data-filter="手臂修飾">手臂修飾 (修飾肉肉)</button>
+          <button class="filter-tag" data-filter="Oversized防魁梧">防身材魁梧</button>
+        </div>
+      </div>
+
+      <!-- Fabric Experience Card -->
+      <div class="filter-card">
+        <div class="filter-card-title">
+          <span>❄️</span> 夏日高溫材質體驗
+        </div>
+        <div class="tag-cloud">
+          <button class="filter-tag" data-filter="接觸涼感">接觸涼感 (高溫救星)</button>
+          <button class="filter-tag" data-filter="抗皺免燙">抗皺免燙 (坐姿防皺)</button>
+          <button class="filter-tag" data-filter="亞麻透氣">亞麻透氣 (從容清爽)</button>
+          <button class="filter-tag" data-filter="垂墜混紡">垂墜混紡 (高雅垂度)</button>
+          <button class="filter-tag" data-filter="透氣薄紗">透氣薄紗 (零負擔疊穿)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Expert Advice Section -->
+  <section class="advice-section">
+    <div class="section-heading">
+      <h3 class="section-title">🎙️ 穿搭達人靈感心法彙整</h3>
+      <p class="section-desc">影片中《老辣妹》與《男生穿搭》分享的日系質感黃金法則</p>
+    </div>
+
+    <div class="advice-cards">
+      <div class="advice-card">
+        <div class="advice-avatar">👩‍🦰</div>
+        <div class="advice-author">老辣妹 · 女生穿搭視角</div>
+        <p class="advice-quote">
+          「日系女生最厲害的地方在於『看似簡單，其實心思極為細膩』。夏天的多層次疊穿不需要增加溫度，善用薄紗、腰包拉高腰線、抗皺裙裝與第二顆扣子露鎖骨，瞬間就能展現不費力的氣質！」
+        </p>
+      </div>
+
+      <div class="advice-card">
+        <div class="advice-avatar">🧔</div>
+        <div class="advice-author">男生穿搭視角</div>
+        <p class="advice-quote">
+          「男生約會寧願Overdress（稍微正式），也不要太過隨意！挑選落肩不落過低的上衣能補足窄肩，下半身混砂垂墜西裝庫配上皮鞋與銀細褲鏈，就能在簡約黑白中傳達可靠貼心的特質。」
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating AI Stylist Button -->
+  <button class="floating-ai-btn" id="floatingAiBtn">
+    💬 Gemini 顧問
+  </button>
+
+  <!-- Modals -->
+  <!-- 1. Universal Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <h3 id="modalTitle" class="modal-card-title">Modal Title</h3>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- 2. Gemini AI Stylist Modal -->
+  <div class="modal-overlay" id="aiStylistOverlay">
+    <div class="modal-card large">
+      <button class="modal-close" id="aiStylistClose">&times;</button>
+      <div class="modal-header-badge">AI STYLIST AGENT</div>
+      <h3 class="modal-card-title">🤖 Gemini 2.5 Flash Lite 智慧約會顧問</h3>
+      <p class="modal-card-sub">請選擇常見熱門情境快捷標籤，或直接輸入任何特別約會場合！</p>
+      
+      <!-- Quick Prompt Chips -->
+      <div class="quick-chips-row">
+        <button class="quick-chip" data-prompt="跟對方去淡水夕陽海邊約會，想要陽光又有氣質...">🌊 淡水夕陽海邊</button>
+        <button class="quick-chip" data-prompt="要去熱鬧夜市吃小吃，希望舒適好走不掉沾污...">🍡 逢甲夜市吃小吃</button>
+        <button class="quick-chip" data-prompt="紀念日去米其林高檔法餐晚宴，需要得體輕奢正裝...">🍷 紀念日高檔餐廳</button>
+        <button class="quick-chip" data-prompt="大晴天去草地野餐放風箏，希望能防蚊又方便穿脫鞋...">🌿 草地野餐放風箏</button>
+      </div>
+
+      <div class="chat-box" id="chatBox">
+        <div class="chat-msg bot">
+          👋 你好！我是你的 Gemini 2.5 日系約會穿搭顧問。請告訴我你這週末的約會地點、天氣或特別困擾，我來為你打造專屬提案與話題破冰心法！
+        </div>
+      </div>
+
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="例如：第一次跟對方去金山看海，氣溫 33 度..." class="chat-input">
+        <button id="sendChatBtn" class="chat-send-btn">傳送諮詢 🚀</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Interactive Multi-Step Quiz Modal -->
+  <div class="modal-overlay" id="quizOverlay">
+    <div class="modal-card">
+      <button class="modal-close" id="quizClose">&times;</button>
+      <div class="modal-header-badge">STYLE QUIZ</div>
+      <h3 class="modal-card-title">📋 3秒身型與約會風格精準檢測</h3>
+      <div id="quizBody">
+        <div class="quiz-step active" id="quizStep1">
+          <p class="quiz-q">STEP 1：您最希望修飾或優化的身型需求？</p>
+          <div class="quiz-opts">
+            <button class="quiz-opt" data-fit="narrow_shoulder">肩寬較窄 / 希望身型魁梧可靠 (男生修飾)</button>
+            <button class="quiz-opt" data-fit="hide_belly">在意小腹或腰線肉肉 (隱形遮瑕)</button>
+            <button class="quiz-opt" data-fit="leg_lengthen">希望視覺拉長雙腿完美黃金比例</button>
+            <button class="quiz-opt" data-fit="arm_hide">手臂肉肉修飾 (落肩遮瑕)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Social Share & Copy Modal -->
+  <div class="modal-overlay" id="shareOverlay">
+    <div class="modal-card">
+      <button class="modal-close" id="shareClose">&times;</button>
+      <div class="modal-header-badge">SOCIAL SHARE</div>
+      <h3 class="modal-card-title">📲 社群約會分享與好感文案</h3>
+      <p class="modal-card-sub">一鍵將精美的約會穿搭提案傳給約會對象或朋友討論！</p>
+      
+      <div class="share-preview-box">
+        <div class="share-title" id="shareCardTitle">約會情境：看展覽 / 美術館 🎨</div>
+        <div class="share-vibe" id="shareCardVibe">氣質優雅 · 簡約知性</div>
+        <div class="share-text-box" id="shareTextPreview">
+          這週末我們要去看展覽，我幫我們挑了這套日系約會穿搭（氣質優雅 · 簡約知性），你看好不好看？✨ 詳情連結：http://localhost:8080
+        </div>
+      </div>
+
+      <div class="share-action-row">
+        <button class="action-btn" id="copyShareTextBtn">📋 一鍵複製好感邀約文案</button>
+        <button class="action-btn secondary" id="lineShareSimBtn">💬 LINE 預覽訊息格式</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Canvas for PNG Generation -->
+  <canvas id="exportCanvas" style="display: none;"></canvas>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 OOTD 日系約會穿搭指南 | 改良優化自 YouTube 穿搭經典企劃</p>
+    <p style="margin-top: 6px; font-size: 0.8rem; color: #8e8e93;">P1 升級版 · Fitting Studio / Canvas PNG / Gemini AI Agent / UIUX 全面修復</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
