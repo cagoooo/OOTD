@@ -2,6 +2,8 @@
 
 > 參考 YouTube 穿搭企劃《夏天約會穿搭指南☀️ 這些細節女生很在意❓不費力穿出「日系感」的技巧大公開 🇯🇵 ft. 老辣妹》以及日本流行穿搭網站（.dot st / StyleHint / WEAR）精華，打造包含單品自由混搭、卡片 PNG 匯出、Gemini AI 穿搭顧問與氣溫感測的全功能 Web 應用。
 
+> 🗂️ **一次性專案**：單次主題頁，內容不再變動，因此不做版本管理。
+
 🌐 **線上展示網址 (GitHub Pages)**：[https://cagoooo.github.io/OOTD/](https://cagoooo.github.io/OOTD/)  
 📦 **GitHub 開源專案庫**：[https://github.com/cagoooo/OOTD](https://github.com/cagoooo/OOTD)
 
