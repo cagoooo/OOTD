@@ -2,7 +2,9 @@
    OOTD 日系約會穿搭指南 - Service Worker (PWA Auto-Cache & Version Control)
    ========================================================================== */
 
-const CACHE_NAME = 'ootd-cache-v1.0.2';
+// 同網域（cagoooo.github.io）其他工具也共用 Cache Storage，只能清除本工具自己的快取
+const CACHE_PREFIX = 'ootd-cache-';
+const CACHE_NAME = CACHE_PREFIX + 'v1.0.2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -36,7 +38,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
+          if (cache.startsWith(CACHE_PREFIX) && cache !== CACHE_NAME) {
             return caches.delete(cache);
           }
         })
